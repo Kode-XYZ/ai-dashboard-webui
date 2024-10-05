@@ -4,34 +4,50 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mic, Send, StopCircle } from 'lucide-react';
 
-const ChatInterface = () => {
+const ChatInterface = ({ 
+  backgroundColor = 'bg-purple-950/80',
+  userMessageColor = 'bg-purple-800',
+  aiMessageColor = 'bg-gray-800',
+  sendButtonColor = 'bg-lime-600 hover:bg-lime-500',
+  recordButtonColor = 'bg-purple-800 hover:bg-purple-700',
+  inputBackgroundColor = 'bg-purple-900/50',
+  onSendMessage,
+  onStartRecording,
+  onStopRecording,
+  additionalModules = [],
+}) => {
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (message.trim()) {
-      setChatHistory([...chatHistory, { type: 'user', content: message }]);
+      const userMessage = { type: 'user', content: message };
+      setChatHistory(prev => [...prev, userMessage]);
       setMessage('');
-      // Here you would typically call an API to get the AI response
-      // For now, we'll just simulate a response
-      setTimeout(() => {
-        setChatHistory(prev => [...prev, { type: 'ai', content: "This is a simulated AI response." }]);
-      }, 1000);
+
+      if (onSendMessage) {
+        const aiResponse = await onSendMessage(message);
+        setChatHistory(prev => [...prev, { type: 'ai', content: aiResponse }]);
+      }
     }
   };
 
   const handleRecording = () => {
     setIsRecording(!isRecording);
-    // Implement actual recording logic here
+    if (isRecording) {
+      onStopRecording && onStopRecording();
+    } else {
+      onStartRecording && onStartRecording();
+    }
   };
 
   return (
-    <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+    <Card className={`${backgroundColor} backdrop-blur-md shadow-lg`}>
       <CardContent className="p-6">
         <div className="h-96 overflow-y-auto mb-4 space-y-4">
           {chatHistory.map((msg, index) => (
-            <div key={index} className={`p-2 rounded-lg ${msg.type === 'user' ? 'bg-purple-800 ml-auto' : 'bg-lime-800 mr-auto'} max-w-[80%]`}>
+            <div key={index} className={`p-2 rounded-lg ${msg.type === 'user' ? userMessageColor : aiMessageColor} ml-auto max-w-[80%]`}>
               {msg.content}
             </div>
           ))}
@@ -41,16 +57,19 @@ const ChatInterface = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type your message here..."
-            className="flex-grow bg-purple-800/50 text-white placeholder-purple-300"
+            className={`flex-grow ${inputBackgroundColor} text-white placeholder-purple-300`}
           />
-          <Button onClick={handleRecording} variant="outline" className="bg-purple-800 hover:bg-purple-700">
+          <Button onClick={handleRecording} variant="outline" className={recordButtonColor}>
             {isRecording ? <StopCircle className="h-4 w-4 text-red-500" /> : <Mic className="h-4 w-4" />}
           </Button>
-          <Button onClick={handleSend} className="bg-lime-600 hover:bg-lime-500 text-white">
+          <Button onClick={handleSend} className={`${sendButtonColor} text-white`}>
             <Send className="h-4 w-4 mr-2" />
             Send
           </Button>
         </div>
+        {additionalModules.map((Module, index) => (
+          <Module key={index} />
+        ))}
       </CardContent>
     </Card>
   );

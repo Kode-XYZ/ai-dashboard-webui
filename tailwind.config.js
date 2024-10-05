@@ -55,11 +55,15 @@ module.exports = {
           light: '#9F7AEA',
           DEFAULT: '#805AD5',
           dark: '#6B46C1',
+          950: '#3B0764',
         },
         lime: {
           light: '#BFFF00',
           DEFAULT: '#9ACD32',
           dark: '#6B8E23',
+        },
+        gray: {
+          900: '#111827',
         },
       },
       borderRadius: {
