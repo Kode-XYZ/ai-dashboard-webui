@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import ChatInterface from '../components/ChatInterface';
 import Dashboard from '../components/Dashboard';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('chat');
