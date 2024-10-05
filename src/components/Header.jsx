@@ -10,10 +10,12 @@ const Header = () => {
     <header className="flex justify-between items-center p-4 bg-background/30 backdrop-blur-md">
       <h1 className="text-2xl font-bold text-lime-300">Multimodal Assistant Hub</h1>
       <Button
-        variant="ghost"
+        variant="outline"
         size="icon"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-        className="text-white hover:text-lime-300"
+        className={`text-lime-300 border-lime-300 hover:bg-lime-300 hover:text-purple-900 transition-colors ${
+          theme === 'dark' ? 'bg-purple-900' : 'bg-purple-100'
+        }`}
       >
         {theme === 'light' ? <MoonIcon className="h-5 w-5" /> : <SunIcon className="h-5 w-5" />}
       </Button>

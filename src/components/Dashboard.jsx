@@ -8,9 +8,11 @@ import TrainingInterface from './TrainingInterface';
 import DatasetManager from './DatasetManager';
 import VisualizationTool from './VisualizationTool';
 import EvaluationMetrics from './EvaluationMetrics';
+import { useTheme } from 'next-themes';
 
 const Dashboard = () => {
   const [selectedModel, setSelectedModel] = useState('');
+  const { theme } = useTheme();
   
   const models = [
     { id: 'gpt3', name: 'GPT-3' },
@@ -21,9 +23,11 @@ const Dashboard = () => {
     { id: 'neurosandbox', name: 'NeuroSandbox' },
   ];
 
+  const shadowClass = theme === 'dark' ? 'shadow-3d-dark' : 'shadow-3d-light';
+
   return (
     <Tabs defaultValue="options" className="w-full">
-      <TabsList className="grid w-full grid-cols-7 bg-purple-900/50 backdrop-blur-md rounded-lg">
+      <TabsList className={`grid w-full grid-cols-7 bg-purple-900/50 backdrop-blur-md rounded-lg ${shadowClass}`}>
         <TabsTrigger value="options">Options</TabsTrigger>
         <TabsTrigger value="models">Models</TabsTrigger>
         <TabsTrigger value="parameters">Parameters</TabsTrigger>
@@ -33,7 +37,7 @@ const Dashboard = () => {
         <TabsTrigger value="evaluation">Evaluation</TabsTrigger>
       </TabsList>
       <TabsContent value="options">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Configuration Assistant</h2>
             <ConfigurationAssistant />
@@ -41,7 +45,7 @@ const Dashboard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="models">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Model Selection</h2>
             <ModelSelector 
@@ -54,7 +58,7 @@ const Dashboard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="parameters">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">AI Parameters</h2>
             <AIParameters />
@@ -62,7 +66,7 @@ const Dashboard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="training">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Model Training</h2>
             <TrainingInterface />
@@ -70,7 +74,7 @@ const Dashboard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="datasets">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Dataset Management</h2>
             <DatasetManager />
@@ -78,7 +82,7 @@ const Dashboard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="visualization">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Data Visualization</h2>
             <VisualizationTool />
@@ -86,7 +90,7 @@ const Dashboard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="evaluation">
-        <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
+        <Card className={`bg-purple-900/30 backdrop-blur-md ${shadowClass}`}>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Model Evaluation</h2>
             <EvaluationMetrics />

@@ -22,7 +22,9 @@ module.exports = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: {
-          DEFAULT: "#202123", // Darker background similar to ChatGPT
+          DEFAULT: "var(--background)",
+          light: "#F0F4F8",
+          dark: "#202123",
         },
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -86,6 +88,11 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      boxShadow: {
+        'neon': '0 0 5px theme("colors.purple.light"), 0 0 20px theme("colors.purple.light")',
+        '3d-light': '8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(255, 255, 255, 0.7)',
+        '3d-dark': '8px 8px 15px rgba(0, 0, 0, 0.5), -8px -8px 15px rgba(255, 255, 255, 0.1)',
       },
     },
   },
