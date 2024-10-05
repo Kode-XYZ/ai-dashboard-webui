@@ -51,6 +51,16 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        purple: {
+          light: '#9F7AEA',
+          DEFAULT: '#805AD5',
+          dark: '#6B46C1',
+        },
+        lime: {
+          light: '#BFFF00',
+          DEFAULT: '#9ACD32',
+          dark: '#6B8E23',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -74,7 +84,11 @@ module.exports = {
       boxShadow: {
         'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       },
+      backdropFilter: {
+        'none': 'none',
+        'blur': 'blur(20px)',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
+}
