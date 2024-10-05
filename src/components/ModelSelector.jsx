@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const ModelSelector = ({ label, models, selectedModel, onModelChange }) => {
+const ModelSelector = ({ label = "Model", models = [], selectedModel, onModelChange }) => {
   return (
     <div className="space-y-2">
       <label className="text-sm font-medium">{label}</label>

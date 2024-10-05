@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import ModelSelector from './ModelSelector';
@@ -7,6 +7,15 @@ import AIParameters from './AIParameters';
 import TrainingInterface from './TrainingInterface';
 
 const Dashboard = () => {
+  const [selectedModel, setSelectedModel] = useState('');
+  
+  // Sample models data
+  const models = [
+    { id: 'gpt3', name: 'GPT-3' },
+    { id: 'gpt4', name: 'GPT-4' },
+    { id: 'bert', name: 'BERT' },
+  ];
+
   return (
     <Tabs defaultValue="options" className="w-full">
       <TabsList className="grid w-full grid-cols-4 bg-purple-900/50 backdrop-blur-md rounded-lg">
@@ -27,7 +36,12 @@ const Dashboard = () => {
         <Card className="bg-purple-900/30 backdrop-blur-md shadow-lg">
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4 text-lime-300">Model Selection</h2>
-            <ModelSelector />
+            <ModelSelector 
+              label="AI Model"
+              models={models}
+              selectedModel={selectedModel}
+              onModelChange={setSelectedModel}
+            />
           </CardContent>
         </Card>
       </TabsContent>
