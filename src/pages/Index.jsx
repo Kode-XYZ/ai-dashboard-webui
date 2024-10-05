@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTheme } from 'next-themes';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import ChatInterface from '../components/ChatInterface';
@@ -7,6 +8,7 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('chat');
+  const { theme, setTheme } = useTheme();
 
   const handleSendMessage = async (message) => {
     // Simulate AI response
@@ -25,8 +27,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Header />
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-background' : 'bg-white'} text-white`}>
+      <Header onThemeToggle={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
       <main className="container mx-auto p-4 space-y-6">
         <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
