@@ -93,6 +93,7 @@ module.exports = {
         'neon': '0 0 5px theme("colors.purple.light"), 0 0 20px theme("colors.purple.light")',
         '3d-light': '8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(255, 255, 255, 0.7)',
         '3d-dark': '8px 8px 15px rgba(0, 0, 0, 0.5), -8px -8px 15px rgba(255, 255, 255, 0.1)',
+        'inner-glow': 'inset 0 0 10px theme("colors.purple.light")',
       },
     },
   },

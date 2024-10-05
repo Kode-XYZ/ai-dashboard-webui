@@ -27,29 +27,33 @@ const Index = () => {
   };
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-background' : 'bg-white'} text-white`}>
-      <Header onThemeToggle={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
-      <main className="container mx-auto p-4 space-y-6">
-        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsContent value="chat">
-            <ChatInterface 
-              backgroundColor="bg-purple-950/80"
-              userMessageColor="bg-purple-800"
-              aiMessageColor="bg-gray-800"
-              sendButtonColor="bg-lime-600 hover:bg-lime-500"
-              recordButtonColor="bg-purple-800 hover:bg-purple-700"
-              inputBackgroundColor="bg-purple-900/50"
-              onSendMessage={handleSendMessage}
-              onStartRecording={handleStartRecording}
-              onStopRecording={handleStopRecording}
-            />
-          </TabsContent>
-          <TabsContent value="dashboard">
-            <Dashboard />
-          </TabsContent>
-        </Tabs>
-      </main>
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-background' : 'bg-white'} text-white relative overflow-hidden`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 to-gray-900 opacity-50" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+      <div className="relative z-10">
+        <Header onThemeToggle={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
+        <main className="container mx-auto p-4 space-y-6">
+          <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsContent value="chat">
+              <ChatInterface 
+                backgroundColor="bg-purple-950/80"
+                userMessageColor="bg-purple-800"
+                aiMessageColor="bg-gray-800"
+                sendButtonColor="bg-lime-600 hover:bg-lime-500"
+                recordButtonColor="bg-purple-800 hover:bg-purple-700"
+                inputBackgroundColor="bg-purple-900/50"
+                onSendMessage={handleSendMessage}
+                onStartRecording={handleStartRecording}
+                onStopRecording={handleStopRecording}
+              />
+            </TabsContent>
+            <TabsContent value="dashboard">
+              <Dashboard />
+            </TabsContent>
+          </Tabs>
+        </main>
+      </div>
     </div>
   );
 };

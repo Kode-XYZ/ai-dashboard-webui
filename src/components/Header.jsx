@@ -8,7 +8,10 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center p-4 bg-background/30 backdrop-blur-md">
-      <h1 className="text-2xl font-bold text-lime-300">Multimodal Assistant Hub</h1>
+      <div className="flex items-center space-x-2">
+        <img src="/logo.svg" alt="Logo" className="w-8 h-8" />
+        <h1 className="text-2xl font-bold text-lime-300">Multimodal Assistant Hub</h1>
+      </div>
       <Button
         variant="outline"
         size="icon"
